@@ -8,6 +8,14 @@ public class LinkedList {
             this.next = null;
         }
     }
+    static class DLLNode {
+        int data;
+        Node next, prev;
+        DLLNode(int element) {
+            this.data = element;
+            this.next = this.prev = null;
+        }
+    }
     LinkedList() { this.head = null; }
     public void insertAtEnd(int element) {
         Node node = new Node(element);
@@ -71,7 +79,8 @@ public class LinkedList {
             temp = fast;
         }
         if(temp == null) return;
-        slow.next = temp.next;
+        if(slow == null) head = head.next;
+        else slow.next = temp.next;
     }
     /*
     temp = head; slow = null; fast = temp.next
@@ -93,6 +102,11 @@ public class LinkedList {
             System.out.println();
         }
     }
+    public void printReverse(Node temp) {
+        if(temp == null) return;
+        printReverse(temp.next);
+        System.out.print(temp.data + " ");
+    }
     public static void main(String[] args) {
         // LinkedList is empty
         LinkedList ll = new LinkedList();                   // head = null
@@ -104,6 +118,7 @@ public class LinkedList {
         ll.insertAtEnd(400);
         ll.insertAtEnd(500);
         ll.display();                                       // 100 200 300 400 500
+        ll.printReverse(ll.head);                           // 500 400 300 200 100
 
         ll.insertAtStart(10);
         ll.display();                                       // 10 100 200 300 400 500
