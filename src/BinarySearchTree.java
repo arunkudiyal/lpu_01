@@ -1,6 +1,5 @@
 import java.util.LinkedList;
 import java.util.Queue;
-
 public class BinarySearchTree {
     Node root;
     static class Node {
@@ -14,11 +13,18 @@ public class BinarySearchTree {
     BinarySearchTree() { this.root = null; }
     public void insert(int data) { root = insertData(root, data); }
     public void delete(int key) { root = deleteKey(root, key); }
+    public int height() { return getHeight(root); }
     public void inOrder() {
         inOrderTraversal(root);
         System.out.println();
     }
     public void bfs() { BFS(root); }
+    public int getHeight(Node root) {
+        if(root == null) return 0;
+        int lHeight = getHeight(root.left);
+        int rHeight = getHeight(root.right);
+        return Math.max(lHeight, rHeight) + 1;
+    }
     public boolean search(int key) {
         Node searchRef = searchKey(root, key);
         if(searchRef == null) return false;
@@ -75,7 +81,7 @@ public class BinarySearchTree {
     public void inOrderTraversal(Node temp) {
         if(temp != null) {
             inOrderTraversal(temp.left);
-            System.out.print(temp.data + " ");q
+            System.out.print(temp.data + " ");
             inOrderTraversal(temp.right);
         }
     }
@@ -93,6 +99,7 @@ public class BinarySearchTree {
     }
     public static void main(String[] args) {
         BinarySearchTree bst = new BinarySearchTree();                      // root = null;
+        System.out.println(bst);                                            // #reference
         bst.insert(60);
         bst.insert(30);
         bst.insert(10);
@@ -101,6 +108,7 @@ public class BinarySearchTree {
         bst.insert(120);
         bst.insert(80);
         bst.insert(70);
+        System.out.println("Height - " + bst.height());
 
         bst.bfs();                                                          // 60 30 100 10 80 120 20 70
         bst.inOrder();                                                      // 10 20 30 60 70 80 100 120
