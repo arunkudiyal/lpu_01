@@ -1,7 +1,10 @@
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 public class PriorityQ {
     public static void main(String[] args) {
         PriorityQueue<Integer> pq = new PriorityQueue<>();
+        ArrayList<ArrayList<Character>> graph;
+
         pq.add(25);
         pq.add(20);
         pq.add(15);
