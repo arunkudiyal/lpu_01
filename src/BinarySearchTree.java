@@ -11,7 +11,7 @@ public class BinarySearchTree {
         }
     }
     BinarySearchTree() { this.root = null; }
-    public void insert(int data) { root = insertData(root, data); }
+    public void insert(int data) { root = insertIterative(root, data); }
     public void delete(int key) { root = deleteKey(root, key); }
     public int height() { return getHeight(root); }
     public void inOrder() {
@@ -41,6 +41,26 @@ public class BinarySearchTree {
         else if(element < temp.data) temp.left = insertData(temp.left, element);
         else if(element > temp.data) temp.right = insertData(temp.right, element);
         return temp;
+    }
+    public Node insertIterative(Node root, int element) {
+        if(root == null) return new Node(element);
+        Node current = root;
+        while(true) {
+            if(element < current.data) {
+                if(current.left == null) {
+                    current.left = new Node(element);
+                    break;
+                }
+                current = current.left;
+            } else {
+                if(current.right == null) {
+                    current.right = new Node(element);
+                    break;
+                }
+                current = current.right;
+            }
+        }
+        return root;
     }
     public int findMin(Node root) {
         Node temp = root; int min = root.data;
