@@ -1,3 +1,6 @@
+import java.util.Queue;
+import java.util.Stack;
+
 public class LinkedList {
     Node head;
     static class Node {
@@ -36,6 +39,25 @@ public class LinkedList {
             node.next = head;
             head = node;
         }
+    }
+    public void reOrder(Node head) {
+        Stack<Integer> stack = new Stack<>();
+        Queue<Integer> queue = new java.util.LinkedList<>();
+        Node temp = head; int c = 0;
+        while(temp != null) {
+            stack.push(temp.data);
+            queue.add(temp.data);
+            temp = temp.next;
+            c += 1;
+        }
+        for(int i=0; i < c; i++) {
+            if(!queue.isEmpty() && i%2 == 0) {
+                System.out.print(queue.poll() + " ");
+            } else {
+                System.out.print(stack.pop() + " ");
+            }
+        }
+        System.out.println();
     }
     public void insertAfter(int data1, int data2) {
         if(head == null) {
@@ -134,5 +156,16 @@ public class LinkedList {
 
         ll.deleteElement(250);
         ll.display();                                       // 100 200 300 400
+
+        ll.deleteFromStart();
+        ll.deleteFromStart();
+        ll.deleteFromStart();
+        ll.deleteFromStart();
+
+        ll.insertAtEnd(1);
+        ll.insertAtEnd(2);
+        ll.insertAtEnd(3);
+        ll.insertAtEnd(4);
+        ll.reOrder(ll.head);
     }
 }

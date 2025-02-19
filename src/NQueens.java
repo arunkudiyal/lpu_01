@@ -16,7 +16,7 @@ class NQueens {
         }
     }
     public boolean isSafe(int row, int col, char[][] board, int n ) {
-        // Horizonal & Vertical
+        // Horizontal & Vertical
         for(int i=0; i < n; i++) {
             if(board[i][col] == 'Q') return false;
             if(board[row][i] == 'Q') return false;
